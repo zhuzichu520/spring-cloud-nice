@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+  reids:
+    image: redis:7.0.0
+    container_name: redis
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "6379:6379"
+    command: [ "redis-server","/etc/redis/redis.conf" ]
+    volumes:
+      - "$PWD/volumes/redis/conf:/etc/redis/"
+      - "$PWD/volumes/redis/data:/data"
+  mysql:
+    image: mysql:8.0.29
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - "$PWD/volumes/mysql/conf:/etc/mysql/conf.d"
+      - "$PWD/volumes/mysql/db/nacos_config.sql:/docker-entrypoint-initdb.d/nacos_config.sql"
+      - "$PWD/volumes/mysql/db/seata_config.sql:/docker-entrypoint-initdb.d/seata_config.sql"
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_USER: 'zhuzichu'
+      MYSQL_PASS: '123456'
+    command: [
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_general_ci',
+      '--max_connections=3000',
+      '--lower_case_table_names=1'
+    ]
+  nacos:
+    image: nacos/nacos-server:1.4.2
+    container_name: nacos
+    env_file:
+      - "$PWD/volumes/nacos/env/nacos-standlone-mysql.env"
+    environment:
+      MODE: standalone
+    volumes:
+      - "$PWD/volumes/nacos/logs/:/home/nacos/logs"
+#      - "$PWD/volumes/nacos/conf/application.properties:/home/nacos/conf/application.properties"
+      - "$PWD/volumes/nacos/conf/custom.properties:/home/nacos/init.d/custom.properties"
+#      - "$PWD/volumes/nacos/sh/nacos-config.sh:/home/nacos/sh/nacos-config.sh"
+#      - "$PWD/volumes/nacos/config.txt:/home/nacos/config.txt"
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      - mysql
+    restart: always
+  seata:
+    image: seataio/seata-server:1.4.2
+    container_name: seata
+    ports:
+      - "8091:8091"
+    environment:
+      SEATA_PORT: 8091
+      SEATA_IP: seata
+      SEATA_CONFIG_NAME: file:/root/seata-config/registry
+    volumes:
+      - "$PWD/volumes/seata/config:/root/seata-config"
+    restart: always
+    depends_on:
+      - nacos
+      - mysql
