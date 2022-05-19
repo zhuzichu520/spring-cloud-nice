@@ -1,0 +1,16 @@
+server:
+  port: 18085
+
+spring:
+  application:
+    name: server-gateway
+  cloud:
+    enabled: true
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+    cloud:
+      nacos:
+        discovery:
+          server-addr: localhost:8848

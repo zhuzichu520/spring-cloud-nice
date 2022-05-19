@@ -18,9 +18,12 @@ repositories {
 }
 
 extra["springCloudAlibabaVersion"] = "2021.0.1.0"
+extra["springCloudVersion"] = "2021.0.1"
 
 dependencies {
     implementation("com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -32,6 +35,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${property("springCloudAlibabaVersion")}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
     }
 }
 
