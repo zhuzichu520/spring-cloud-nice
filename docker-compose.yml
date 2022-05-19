@@ -1,6 +1,7 @@
 version: "3"
 
 services:
+
   reids:
     image: redis:7.0.0
     container_name: redis
@@ -13,6 +14,7 @@ services:
     volumes:
       - "$PWD/volumes/redis/conf:/etc/redis/"
       - "$PWD/volumes/redis/data:/data"
+
   mysql:
     image: mysql:8.0.29
     container_name: mysql
@@ -32,6 +34,7 @@ services:
       '--max_connections=3000',
       '--lower_case_table_names=1'
     ]
+
   nacos:
     image: nacos/nacos-server:1.4.2
     container_name: nacos
@@ -52,6 +55,7 @@ services:
     depends_on:
       - mysql
     restart: always
+
   seata:
     image: seataio/seata-server:1.4.2
     container_name: seata
@@ -67,3 +71,29 @@ services:
     depends_on:
       - nacos
       - mysql
+
+  rocketmq:
+    image: apache/rocketmq:4.9.2
+    container_name: rocketmq
+    ports:
+      - "9876:9876"
+    volumes:
+      - "$PWD/volumes/rocketmq/logs:/opt/logs/"
+      - "$PWD/volumes/rocketmq/store:/opt/store/"
+    environment:
+      JAVA_OPT_EXT: "-Duser.home=/opt -Xms512m -Xmx512m -Xmn150m"
+    command: sh mqnamesrv
+
+  sentinel-dashboard:
+    image: huoyingyang/sentinel-dashboard:1.8.3
+    container_name: sentinel-dashboard
+    restart: always
+    environment:
+      - NACOS_HOST=nacos
+      - NACOS_PORT=8848
+    ports:
+      - "8858:8858"
+    volumes:
+      - "$PWD/volumes/sentinel/logs:/root/logs"
+    depends_on:
+      - nacos
