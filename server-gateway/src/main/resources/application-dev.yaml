@@ -1,0 +1,34 @@
+server:
+  port: 18085
+
+spring:
+  application:
+    name: server-gateway
+  cloud:
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          lower-case-service-id: true
+      routes:
+    sentinel:
+      datasource.ds2.file:
+        file: "classpath: gateway.json"
+        ruleType: gw-flow
+      datasource.ds1.file:
+        file: "classpath: api.json"
+        ruleType: gw-api-group
+      transport:
+        dashboard: localhost:8080
+      filter:
+        enabled: true
+      scg.fallback:
+        mode: response
+        response-status: 444
+        response-body: 1234
+      scg:
+        order: -100
+    cloud:
+      nacos:
+        discovery:
+          server-addr: localhost:8848
