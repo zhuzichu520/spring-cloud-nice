@@ -12,8 +12,8 @@ services:
       - "6379:6379"
     command: [ "redis-server","/etc/redis/redis.conf" ]
     volumes:
-      - "$PWD/volumes/redis/conf:/etc/redis/"
-      - "$PWD/volumes/redis/data:/data"
+      - "./volumes/redis/conf:/etc/redis/"
+      - "./volumes/redis/data:/data"
 
   mysql:
     image: mysql:8.0.29
@@ -21,9 +21,9 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "$PWD/volumes/mysql/conf:/etc/mysql/conf.d"
-      - "$PWD/volumes/mysql/db/nacos_config.sql:/docker-entrypoint-initdb.d/nacos_config.sql"
-      - "$PWD/volumes/mysql/db/seata_config.sql:/docker-entrypoint-initdb.d/seata_config.sql"
+      - "./volumes/mysql/conf:/etc/mysql/conf.d"
+      - "./volumes/mysql/db/nacos_config.sql:/docker-entrypoint-initdb.d/nacos_config.sql"
+      - "./volumes/mysql/db/seata_config.sql:/docker-entrypoint-initdb.d/seata_config.sql"
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
       MYSQL_USER: 'zhuzichu'
@@ -39,15 +39,15 @@ services:
     image: nacos/nacos-server:1.4.2
     container_name: nacos
     env_file:
-      - "$PWD/volumes/nacos/env/nacos-standlone-mysql.env"
+      - "./volumes/nacos/env/nacos-standlone-mysql.env"
     environment:
       MODE: standalone
     volumes:
-      - "$PWD/volumes/nacos/logs/:/home/nacos/logs"
-#      - "$PWD/volumes/nacos/conf/application.properties:/home/nacos/conf/application.properties"
-      - "$PWD/volumes/nacos/conf/custom.properties:/home/nacos/init.d/custom.properties"
-#      - "$PWD/volumes/nacos/sh/nacos-config.sh:/home/nacos/sh/nacos-config.sh"
-#      - "$PWD/volumes/nacos/config.txt:/home/nacos/config.txt"
+      - "./volumes/nacos/logs/:/home/nacos/logs"
+#      - "./volumes/nacos/conf/application.properties:/home/nacos/conf/application.properties"
+      - "./volumes/nacos/conf/custom.properties:/home/nacos/init.d/custom.properties"
+#      - "./volumes/nacos/sh/nacos-config.sh:/home/nacos/sh/nacos-config.sh"
+#      - "./volumes/nacos/config.txt:/home/nacos/config.txt"
     ports:
       - "8848:8848"
       - "9848:9848"
@@ -66,7 +66,7 @@ services:
       SEATA_IP: seata
       SEATA_CONFIG_NAME: file:/root/seata-config/registry
     volumes:
-      - "$PWD/volumes/seata/config:/root/seata-config"
+      - "./volumes/seata/config:/root/seata-config"
     restart: always
     depends_on:
       - nacos
@@ -78,8 +78,8 @@ services:
     ports:
       - "9876:9876"
     volumes:
-      - "$PWD/volumes/rocketmq/logs:/opt/logs/"
-      - "$PWD/volumes/rocketmq/store:/opt/store/"
+      - "./volumes/rocketmq/logs:/opt/logs/"
+      - "./volumes/rocketmq/store:/opt/store/"
     environment:
       JAVA_OPT_EXT: "-Duser.home=/opt -Xms512m -Xmx512m -Xmn150m"
     command: sh mqnamesrv
@@ -94,6 +94,6 @@ services:
     ports:
       - "8858:8858"
     volumes:
-      - "$PWD/volumes/sentinel/logs:/root/logs"
+      - "./volumes/sentinel/logs:/root/logs"
     depends_on:
       - nacos
