@@ -1,16 +1,12 @@
-server:
-  port: 18085
-
+#nacos
 spring:
-  application:
-    name: server-gateway
+  profiles:
+    active: dev
   cloud:
-    enabled: true
-    gateway:
-      discovery:
-        locator:
-          lower-case-service-id: true
-    cloud:
-      nacos:
-        discovery:
-          server-addr: localhost:8848
+    ncos:
+      config:
+        uername: nacos
+        password: nacos
+        contextPath: /nacos
+        server-addr: localhost:8848
+
