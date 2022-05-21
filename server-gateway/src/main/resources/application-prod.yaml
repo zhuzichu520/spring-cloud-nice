@@ -5,6 +5,14 @@ spring:
   application:
     name: server-gateway
   cloud:
+    nacos:
+      config:
+        username: nacos
+        password: nacos
+        contextPath: /nacos
+        server-addr: localhost:8848
+      discovery:
+        namespace: public
     gateway:
       enabled: true
       discovery:
@@ -19,7 +27,7 @@ spring:
         file: "classpath: api.json"
         ruleType: gw-api-group
       transport:
-        dashboard: localhost:8080
+        dashboard: localhost:8858
       filter:
         enabled: true
       scg.fallback:

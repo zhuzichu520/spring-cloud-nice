@@ -21,15 +21,20 @@ extra["springCloudAlibabaVersion"] = "2021.0.1.0"
 extra["springCloudVersion"] = "2021.0.1"
 
 dependencies {
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel")
     implementation("com.alibaba.cloud:spring-cloud-alibaba-sentinel-gateway")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config")
+    implementation("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.alibaba.csp:sentinel-datasource-nacos")
+    implementation("org.springframework.cloud:spring-cloud-starter-loadbalancer")
+    api(project(path = ":library-shared"))
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
+
 }
 
 dependencyManagement {

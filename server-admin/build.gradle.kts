@@ -34,6 +34,9 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("com.baomidou:mybatis-plus-boot-starter:3.5.1")
+    api(project(path = ":library-shared"))
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")

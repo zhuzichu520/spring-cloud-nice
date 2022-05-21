@@ -2,5 +2,6 @@ rootProject.name = "nice"
 
 include(
     "server-gateway",
-    "server-admin"
+    "server-admin",
+    "library-shared"
 )

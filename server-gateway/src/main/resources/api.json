@@ -1,31 +1,9 @@
 [
   {
-    "apiName": "some_customized_api",
+    "apiName": "admin_api",
     "predicateItems": [
       {
-        "pattern": "/product/baz"
-      },
-      {
-        "pattern": "/product/foo/**",
-        "matchStrategy": 1
-      },
-      {
-        "items": [
-          {
-            "pattern": "/spring-cloud/**"
-          },
-          {
-            "pattern": "/spring-cloud-alibaba/**"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "apiName": "another_customized_api",
-    "predicateItems": [
-      {
-        "pattern": "/ahas"
+        "pattern": "/admin"
       }
     ]
   }

@@ -1,11 +1,11 @@
-package com.zhuzichu.gateway
+package com.zhuzichu.admin
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ApplicationGateway
+class AdminApplication
 
 fun main(args: Array<String>) {
-    runApplication<ApplicationGateway>(*args)
+    runApplication<AdminApplication>(*args)
 }

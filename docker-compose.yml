@@ -24,6 +24,7 @@ services:
       - "./volumes/mysql/conf:/etc/mysql/conf.d"
       - "./volumes/mysql/db/nacos_config.sql:/docker-entrypoint-initdb.d/nacos_config.sql"
       - "./volumes/mysql/db/seata_config.sql:/docker-entrypoint-initdb.d/seata_config.sql"
+      - "./volumes/mysql/db/nice_config.sql:/docker-entrypoint-initdb.d/nice_config.sql"
     environment:
       MYSQL_ROOT_PASSWORD: "123456"
       MYSQL_USER: 'zhuzichu'
@@ -91,6 +92,8 @@ services:
     environment:
       - NACOS_HOST=nacos
       - NACOS_PORT=8848
+      - NACOS_USERNAME=naocs
+      - NACOS_PASSWORD=naocs
     ports:
       - "8858:8858"
     volumes:
