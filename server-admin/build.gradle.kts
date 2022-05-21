@@ -32,8 +32,6 @@ dependencies {
 //    implementation("com.alibaba.csp:sentinel-apache-dubbo-adapter")
 //    implementation("com.baomidou:mybatis-plus-boot-starter:3.5.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.springfox:springfox-boot-starter:3.0.0")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.5.1")
     api(project(path = ":library-shared"))
