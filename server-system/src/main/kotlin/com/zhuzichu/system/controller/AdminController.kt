@@ -9,11 +9,11 @@ import com.zhuzichu.shared.response.ResponseController
 import com.zhuzichu.shared.utils.BusinessUtil
 import io.swagger.annotations.Api
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.Parameter
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.validation.ValidationUtils
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
-
 
 @RestController
 @ResponseController
@@ -28,6 +28,7 @@ class AdminController {
     @Operation(summary = "用户登录")
     @RequestMapping(value = ["/login"], method = [RequestMethod.POST])
     fun login(loginParam: LoginParam):UserDto{
+        loginParam.formatCheck()
         val user = userService.login(loginParam.username, loginParam.password)
         return user.toDto(BusinessUtil.createToken(user))
     }

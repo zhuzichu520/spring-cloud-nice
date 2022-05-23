@@ -29,6 +29,7 @@ dependencies {
     implementation("org.apache.tomcat.embed:tomcat-embed-core")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("io.swagger.core.v3:swagger-annotations:2.1.2")
+    implementation("io.swagger:swagger-annotations:1.5.22")
 }
 
 tasks.withType<Test> {
