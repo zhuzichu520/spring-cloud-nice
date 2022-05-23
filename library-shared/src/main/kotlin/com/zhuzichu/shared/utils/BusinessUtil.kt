@@ -4,7 +4,7 @@ import cn.hutool.core.convert.Convert
 import cn.hutool.crypto.SecureUtil
 import cn.hutool.jwt.JWTUtil
 import com.zhuzichu.shared.entity.admin.bean.TokenPayload
-import com.zhuzichu.shared.entity.admin.po.User
+import com.zhuzichu.shared.entity.admin.po.Admin
 
 object BusinessUtil {
 
@@ -13,7 +13,7 @@ object BusinessUtil {
     /**
      * 创建JwtToken
      */
-    fun createToken(user: User):String{
+    fun createToken(user: Admin):String{
         return JWTUtil.createToken(HashMap<String,Any?>().apply {
             put("id", user.id)
             put("username", user.username)

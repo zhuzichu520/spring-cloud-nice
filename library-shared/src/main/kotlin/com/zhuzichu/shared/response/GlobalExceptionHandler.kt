@@ -12,6 +12,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = [BizException::class])
     @ResponseBody
     fun bizExceptionHandler( e: BizException): Result<String> {
+        loge("业务异常->${e.result.code}:${e.result.message}")
         return Result.failure(e.result.code,e.result.message)
     }
 

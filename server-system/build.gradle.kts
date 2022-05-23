@@ -33,6 +33,7 @@ dependencies {
 //    implementation("com.baomidou:mybatis-plus-boot-starter:3.5.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("com.github.xiaoymin:knife4j-spring-boot-starter:2.0.9")
     implementation("com.baomidou:mybatis-plus-boot-starter:3.5.1")
     api(project(path = ":library-shared"))
     runtimeOnly("mysql:mysql-connector-java")

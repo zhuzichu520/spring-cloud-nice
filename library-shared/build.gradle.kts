@@ -20,15 +20,16 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     api("cn.hutool:hutool-all:5.8.1")
+    api("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework:spring-web")
     implementation("org.springframework:spring-webmvc")
     implementation("com.baomidou:mybatis-plus-annotation:3.5.1")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-autoconfigure")
     implementation("org.apache.tomcat.embed:tomcat-embed-core")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("io.swagger.core.v3:swagger-annotations:2.1.2")
 }
-
-
 
 tasks.withType<Test> {
     useJUnitPlatform()

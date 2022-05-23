@@ -1,4 +1,4 @@
-package com.zhuzichu.admin
+package com.zhuzichu.system
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -9,7 +9,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableOpenApi
-class AdminApplication
+class SystemApplication
 fun main(args: Array<String>) {
-    runApplication<AdminApplication>(*args)
+    runApplication<SystemApplication>(*args)
 }
