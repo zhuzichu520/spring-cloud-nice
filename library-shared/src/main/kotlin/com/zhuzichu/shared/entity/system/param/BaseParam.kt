@@ -1,4 +1,4 @@
-package com.zhuzichu.shared.entity.admin.param
+package com.zhuzichu.shared.entity.system.param
 
 import org.hibernate.validator.HibernateValidator
 import javax.validation.ConstraintViolationException

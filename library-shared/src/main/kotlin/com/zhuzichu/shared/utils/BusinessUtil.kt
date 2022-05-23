@@ -3,8 +3,8 @@ package com.zhuzichu.shared.utils
 import cn.hutool.core.convert.Convert
 import cn.hutool.crypto.SecureUtil
 import cn.hutool.jwt.JWTUtil
-import com.zhuzichu.shared.entity.admin.bean.TokenPayload
-import com.zhuzichu.shared.entity.admin.po.Admin
+import com.zhuzichu.shared.entity.system.bean.TokenPayload
+import com.zhuzichu.shared.entity.system.po.Admin
 
 object BusinessUtil {
 

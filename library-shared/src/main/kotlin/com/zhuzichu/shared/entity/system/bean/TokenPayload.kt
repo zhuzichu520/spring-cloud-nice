@@ -1,4 +1,4 @@
-package com.zhuzichu.shared.entity.admin.bean
+package com.zhuzichu.shared.entity.system.bean
 
 import cn.hutool.core.convert.Convert
 import javax.servlet.http.HttpServletRequest

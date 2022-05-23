@@ -1,14 +1,14 @@
-package com.zhuzichu.shared.entity.admin.param
+package com.zhuzichu.shared.entity.system.param
 
-import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.annotations.ApiModelProperty
 import javax.validation.constraints.Size
 
 data class LoginParam (
-    @field:Schema(description = "用户名", required = true)
+    @ApiModelProperty(value = "用户名", required = true)
     @field:Size(min = 2, max = 5, message = "用户名长度：3至16")
     val username: String,
 
-    @field:Schema(description = "密码", required = true)
+    @ApiModelProperty(value = "密码", required = true)
     @field:Size(min = 2, max = 5, message = "密码长度：3至16")
     val password: String,
 ): BaseParam
