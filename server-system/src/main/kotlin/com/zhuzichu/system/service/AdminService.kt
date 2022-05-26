@@ -3,7 +3,8 @@ package com.zhuzichu.system.service
 import cn.hutool.core.util.IdUtil
 import cn.hutool.crypto.SecureUtil
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
-import com.zhuzichu.shared.entity.system.param.AddAdminParam
+import com.zhuzichu.shared.entity.system.dto.GetAdmin
+import com.zhuzichu.shared.entity.system.param.SaveAdminParam
 import com.zhuzichu.shared.entity.system.param.LoginParam
 import com.zhuzichu.system.dao.AdminMapper
 import com.zhuzichu.shared.entity.system.po.Admin
@@ -27,7 +28,7 @@ class AdminService {
         return user
     }
 
-    fun addAdmin(param: AddAdminParam): Admin {
+    fun addAdmin(param: SaveAdminParam): Admin {
         var admin = userMapper.selectOne(QueryWrapper<Admin>().eq("username", param.username))
         if (admin != null) {
             throw BizException(ResultCode.RC803)
@@ -36,6 +37,11 @@ class AdminService {
         admin = Admin(id, param.username, SecureUtil.md5(param.password))
         userMapper.insert(admin)
         return admin
+    }
+
+    fun getAdminById(id: Long?): GetAdmin {
+        val admin = userMapper.selectOne(QueryWrapper<Admin>().eq("id", id)) ?: throw BizException(ResultCode.RC500)
+        return admin.toGetAdminResult()
     }
 
 }
