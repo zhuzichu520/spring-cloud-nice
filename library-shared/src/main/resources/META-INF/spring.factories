@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.zhuzichu.shared.response.ResponseAdvice,com.zhuzichu.shared.response.GlobalExceptionHandler,com.zhuzichu.shared.config.MvcConfigurer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.zhuzichu.shared.response.GlobalExceptionHandler,com.zhuzichu.shared.config.MvcConfigurer

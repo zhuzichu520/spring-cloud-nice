@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+/volumes/nacos/logs/*
+/volumes/nginx/logs/*
+/volumes/redis/data/*
+/volumes/rocketmq/logs/*
+/volumes/sentinel/logs/*
