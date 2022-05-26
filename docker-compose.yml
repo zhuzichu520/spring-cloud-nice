@@ -2,6 +2,12 @@ version: "3"
 
 services:
 
+  server-system:
+    image: server-system:latest
+    container_name: server-system
+    ports:
+      - "8080:8080"
+
   reids:
     image: redis:7.0.0
     container_name: redis
